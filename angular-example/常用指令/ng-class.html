@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html  ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<style>
+	.big{
+/*		width:300px;
+		height:300px;*/
+		background:green;
+	}
+	.small{
+/*		width:100px;
+		height:100px;*/
+		background:orange;
+	}
+	.ccc{
+		border:10px solid #ccc;
+	}
+	</style>
+</head>
+<body ng-controller="ctrl" >
+	<button ng-mouseover="change()">切换类名</button>
+	<!-- <div ng-class="{'big':flag,'small':!flag}"> -->
+	<!-- <div class="{{cc}} {{flag?'big':'small'}}"> -->
+	<!-- <div ng-class="{true:'big',false:'small'}[flag]">
+		
+	</div> -->
+	<ul>
+		<!-- <li ng-bind="a()"></li>
+		<li ng-repeat='v in arr' ng-class-even="'big'" ng-class-odd="'small'" ng-bind='v'></li> -->
+
+		<li ng-cloak>{{123123123}}</li>
+		<li ng-repeat='v in arr' ng-class-even="'big'" ng-class-odd="'small'" ng-cloak>{{v}}</li>
+	</ul>
+	<script>
+	angular.module('app',[]).controller('ctrl',['$scope',function($scope){
+		$scope.a=function(){
+			alert(1)
+		}
+		// $scope.cc = "ccc";
+		// $scope.change=function(){
+		// 	// $scope.className=$scope.className == 'big'?'small':"big";
+		// 	$scope.flag=!$scope.flag;
+		// }
+		$scope.arr = [10,20,30,40,50,60];
+	}])
+	</script>
+
+
+</body>
+</html>

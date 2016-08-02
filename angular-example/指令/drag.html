@@ -1,0 +1,57 @@
+'<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+	<script src="node_modules/angular/angular.min.js"></script>
+	<style>
+	.box{
+		width:300px;
+		height:300px;
+		background:red;
+	}
+	</style>
+</head>
+<body>
+	<div drag  class="box"></div>
+	<div drag  class="box"></div>
+	<div drag  class="box"></div>
+	<div drag  class="box"></div>
+	<div drag  class="box"></div>
+	<div drag  class="box"></div>
+	<div drag  class="box"></div>
+
+	<script>
+	var app =angular.module('app',[]);
+	app.directive('drag',function(){
+		return {
+			link:function(scope,element,attrs){
+				$(element).css('position','absolute')
+				$(element).mousedown(function(e){
+					var dx = e.clientX;
+					var dy = e.clientY;
+					var ox = this.offsetLeft;
+					var oy = this.offsetTop;
+					$(document).mousemove(function(e){
+						var mx = e.clientX;
+						var my = e.clientY;
+						var x = mx - (dx-ox);
+						var y = my - (dy-oy);
+						$(element).css({
+							left:x,
+							top:y
+						})
+
+					})
+					$(document).mouseup(function(){
+						$(document).off()
+					})	
+				})
+
+			}
+		};
+	})
+	</script>
+</body>
+</html>'

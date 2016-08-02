@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-controller="ctrl">
+	<div class="title">
+		<button ng-click="item='i1'">1</button>
+		<button ng-click="item='i2'">2</button>
+		<button ng-click="item='i3'">3</button>
+		<button ng-click="item='i4'">4</button>
+	</div>
+	<input type="text" ng-model="item">
+	<div class="list" ng-switch="item">
+		<img ng-src="{{arr[0]}}" ng-switch-when="i1">
+		<img ng-src="{{arr[1]}}" ng-switch-when="i2">
+		<img ng-src="{{arr[2]}}" ng-switch-when="i3">
+		<img ng-src="{{arr[3]}}" ng-switch-when="i4">
+	</div>
+	
+
+	<script>
+	var app = angular.module('app',[]);
+	app.controller('ctrl',function($scope){
+		$scope.arr=["images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg"];
+
+		$scope.item = 'i1';
+	})
+	</script>
+</body>
+</html>

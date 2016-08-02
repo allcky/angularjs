@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="node_modules/angular/angular.min.js"></script>
+	<style>
+	.box{
+		width:300px;
+		height:300px;
+	}
+	</style>
+</head>
+<body ng-controller="ctrl">
+	<label for="">红色<input type="radio" name="aa" ng-click="color='red'" ng-checked='true'></label>
+	<label for="">绿色<input type="radio" name="aa" ng-click="color='green'"></label>
+	
+	<div class="box" ng-style="{background:color}" >
+		
+	</div>
+	
+
+	<script>
+	var app = angular.module('app',[]);
+	app.controller('ctrl',function($scope){
+		$scope.color = 'pink';
+		// $scope.s1 = {
+		// 	background:'green'
+		// }
+		// $scope.s2 = {
+		// 	background:'red'
+		// }
+	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="icloud">
+<head>
+	<meta charset="UTF-8">
+	<script src="js/angular.min.js"></script>
+	<script src="js/index.js"></script>
+	<link rel="stylesheet" href="css/index.css">
+	<title>icloud</title>
+</head>
+<body ng-controller="todo">
+	<div class="container">
+		<div class="left">
+			<div class="title">
+				<a href="" class="logo">待办事项</a>
+				<div class="add" ng-click="add()">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+			<ul class="list">
+				<li ng-repeat="v in todo track by $index" ng-click="select($index)" ng-style="{'background-color':$index==index?'#2D2D2B':''}">
+					<span ng-style="{'background':v.color}"></span>
+					<h4>{{v.title}}</h4>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="right">
+			<div class="search">
+				<span class="search-icon"></span>
+				<input type="text" placeholder='搜索所有提醒'>
+			</div>
+			<div class="list">
+				<div class="title">
+					<h3 ng-style="{color:todo[index].color}">{{todo[index].title}}</h3>
+					<div ng-style="{color:todo[index].color}"  class="btn"  ng-click="getColor()">选项</div>
+					<!--选项-->
+					<div class="slide" ng-show="f">
+						<div class="inner">
+							<input type="text" ng-model="titles" ng-style="{color:fontColor}">
+							<ul class="colors">
+								<li ng-repeat = 'v in color' ng-style="{'background-color':v,'border-color':v==fontColor?v:'transparent'}" ng-click="a(v)">
+								</li>
+							</ul>
+							<div class="btn-group">
+								<div class="btn-left" ng-click="del()">
+									删除
+								</div>
+								<div class="btn-right">
+									<div class="cancel" ng-click="f=false">取消</div>
+									<span></span>
+									<div class='finish' ng-click="finish()">完成</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="com">
+						<div ng-click="flag=!flag">
+							<span ng-class="{true:'span-in',false:'span-out'}[flag]"></span>
+							已完成:{{doneNum}}项
+						</div>
+						<ul ng-hide='flag'>
+							<li ng-repeat="v in todo[index].list | filter:done" >
+								<div class="bg"></div>
+								<div >
+									<span ng-style="{'border-color':todo[index].color,'background-color':todo[index].color}" ng-click="changeDone(v,false)"></span>
+									<p>{{v.content}}</p>
+								</div>	
+							</li>	
+						</ul>
+					</div>
+		
+					<ul class="now">
+						<li ng-repeat = "v in todo[index].list |filter:doing">
+							<span ng-style="{'border-color':todo[index].color,'background-color':'rgba(0,0,0,0)'}" ng-click="changeDone(v,true)"></span>
+							<input contenteditable  ng-model='v.content'>
+						</li>
+					</ul>
+					<div class="new" ng-click="addList()">
+						<p>新项目...</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

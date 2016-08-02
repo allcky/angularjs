@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+	<div mytime></div>
+<script>
+	var app = angular.module('app',[]);
+	app.directive('mytime',function(){
+		return {
+			templateUrl:"tpl.html",
+			replace:true,
+			// scope:true,
+			scope:{
+				d:"@d"
+			},
+			controller:function($scope,$filter,$interval){
+				var c = $scope.d||"yyyy-MM-dd hh:mm:ss";
+				function ccccc(){
+				
+					$scope.times = new Date();
+					$scope.times = $filter('date')($scope.times,c);
+			}
+			ccccc()
+			$interval(ccccc,1000)
+				
+			}
+		};
+	})
+	app.controller('timeCtrl',function($scope){
+		$scope.times = new Date()
+	})
+	
+	// $scope.$watch()  
+	// $scope.$apply()
+</script>	
+</body>
+</html>

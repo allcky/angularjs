@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-controller="ctrl">
+	<button ng-click="flag=!flag">显示隐藏</button>
+	<ul ng-if="flag">
+		<li>001</li>
+		<li>002</li>
+		<li>003</li>
+		<li>{{say()}}</li>
+	</ul>
+	
+
+	<script>
+	var app = angular.module('app',[]);
+	app.controller('ctrl',function($scope){
+		$scope.say= function (){
+			alert("ng-if执行了吗？")
+		}
+	})
+	</script>
+</body>
+</html>
